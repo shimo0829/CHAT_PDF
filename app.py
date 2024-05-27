@@ -32,7 +32,7 @@ Answer:"""
 # Initialize streamlit interface
 def init_page() -> None:
     st.set_page_config(
-        page_title="Chat PDF"
+        page_title="PDF Chat Assistant"
 
     )
     st.sidebar.title("Options")
@@ -153,8 +153,8 @@ def main() -> None:
 
     init_messages()
 
-    st.header("Chat PDF")
-    if user_input := st.chat_input("Input your question:"):
+    st.header("(PDF) Chat Assistant")
+    if user_input := st.chat_input("Enter your question here:"):
         if qdrant:
             context = [c.page_content for c in qdrant.similarity_search(user_input, k=10)]
             user_input_w_context = PromptTemplate(template=PROMPT_TEMPLATE, 
@@ -165,7 +165,7 @@ def main() -> None:
             user_input_w_context = user_input
         st.session_state.messages.append(
             HumanMessage(content=user_input_w_context))
-        with st.spinner("Chat PDF is typing..."):
+        with st.spinner("Bot is typing..."):
             answer, cost = get_answer(llm, st.session_state.messages)
         st.session_state.messages.append(AIMessage(content=answer))
         st.session_state.costs.append(cost)
