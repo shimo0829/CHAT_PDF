@@ -8,4 +8,4 @@
 ### **2024/4/11** 
 * 新增了**streamlit**的互動式介面 
 
-![image](picture or gif url)
+![image](https://github.com/shimo0829/PDF_CHAT_ASSISTANT/blob/main/interface.png)
